@@ -1,17 +1,27 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container" id="app">
+    <PartyList></PartyList>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PartyList from './components/PartyList'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    PartyList
+  },
+  data () {
+    return {
+      url: 'http://data.riksdagen.se/personlista/?iid=&fnamn=&enamn=&f_ar=&kn=&parti=&valkrets=&rdlstatus=&org=&utformat=json&sort=sorteringsnamn&sortorder=asc&termlista='
+    }
+  },
+  mounted () {
+    axios
+    .get(this.url)
+    .then(response => console.log(response))
   }
 }
 </script>
